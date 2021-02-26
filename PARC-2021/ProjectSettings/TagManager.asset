@@ -4,7 +4,30 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - obj
+  - wall
+  - rightClickMenu
+  - programmingEnv
+  - onDragCanvas
   - Building
+  - Claw
+  - var
+  - saveLoadMenu
+  - mainCanvas
+  - SafetyZone
+  - Adult
+  - ChargingStation
+  - Animal
+  - Destination
+  - Robot
+  - Work
+  - Screw
+  - Environment
+  - Child
+  - Barricade
+  - Vet
+  - ReleaseSpot
+  - School
   layers:
   - Default
   - TransparentFX
