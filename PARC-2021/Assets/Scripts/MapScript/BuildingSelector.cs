@@ -1,23 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingSelector : MonoBehaviour
 {
-    GameObject lastbuilding = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //GameObject lastbuilding = null;
 
     // Update is called once per frame
     void Update()
     {
-        Selector();
+        //Selector();
     }
 
-    void Selector()
+   /* void Selector()
     {
         RaycastHit hit;
         Ray ray;
@@ -49,5 +45,5 @@ public class BuildingSelector : MonoBehaviour
 
         }
         
-    }
+    }*/
 }

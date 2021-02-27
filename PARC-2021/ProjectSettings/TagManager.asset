@@ -28,6 +28,10 @@ TagManager:
   - Vet
   - ReleaseSpot
   - School
+  - Ground
+  - practicePos
+  - SkyboxCamera
+  - Africa
   layers:
   - Default
   - TransparentFX
