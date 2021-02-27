@@ -10,6 +10,8 @@ public class Globe : MonoBehaviour
     bool startPressed;
     bool slowStop;
     public GameObject pleaseWait;
+    public Animator mainMenu;
+    public GameObject Challenge;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class Globe : MonoBehaviour
         }
         if (slowStop)
         {
-            if (turnSpeed <= 0) { turnSpeed = 0; pleaseWait.SetActive(false); }               
+            if (turnSpeed <= 0) { turnSpeed = 0; pleaseWait.SetActive(false); mainMenu.SetBool("Start", true); }               
             else
                 turnSpeed -= 0.5f;
         }

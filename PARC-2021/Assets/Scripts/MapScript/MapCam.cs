@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MapCam : MonoBehaviour
 {
-    public GameObject Senegal;
+    public GameObject Challenges;
 
-    public void SpawnBuildings()
+    public void SpawnChallenges()
     {
-        Senegal.SetActive(true);
+        Challenges.SetActive(true);
     }
 }
