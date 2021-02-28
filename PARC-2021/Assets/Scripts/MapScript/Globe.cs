@@ -40,7 +40,8 @@ public class Globe : MonoBehaviour
         {
             if (turnSpeed <= 0) { turnSpeed = 0; pleaseWait.SetActive(false); mainMenu.SetBool("Start", true); }               
             else
-                turnSpeed -= 0.5f;
+                turnSpeed -= Time.deltaTime*120f;
+            
         }
     }
 
