@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class BuildingSelector : MonoBehaviour
+public class SceneSelector : MonoBehaviour
 {
     //GameObject lastbuilding = null;
 
@@ -11,6 +11,11 @@ public class BuildingSelector : MonoBehaviour
     void Update()
     {
         //Selector();
+    }
+
+    public void OpenChallenge1()
+    {
+        SceneManager.LoadScene("Challenge 1");
     }
 
    /* void Selector()
