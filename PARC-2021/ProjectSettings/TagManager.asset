@@ -32,6 +32,8 @@ TagManager:
   - practicePos
   - SkyboxCamera
   - Africa
+  - FirstAid
+  - Safe
   layers:
   - Default
   - TransparentFX
