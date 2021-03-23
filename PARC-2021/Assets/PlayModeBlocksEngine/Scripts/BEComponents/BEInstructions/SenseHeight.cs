@@ -15,44 +15,16 @@ public class SenseHeight : BEInstruction
 		RaycastHit hit;
 		if (Physics.Raycast(targetObject.transform.position, targetObject.transform.TransformDirection(Vector3.forward), out hit))
 		{
-			if (hit.transform.gameObject.tag == "Adult" )
+			if (hit.transform.gameObject.tag == "FirstAid" )
 			{
-				if(SceneManager.GetActiveScene().name == "Main")
-                {
 					//FindObjectOfType<GameHandler>().isSensing = true;
-					result = "228";
-                }
-                else
-                {
-					result = "228";
-				}
+					result = "50";
 				
 			}
-			else if (hit.transform.gameObject.tag == "Animal")
+			else if (hit.transform.gameObject.tag == "Safe")
 			{
-				if (SceneManager.GetActiveScene().name == "Main")
-				{
 					//FindObjectOfType<GameHandler>().isSensing = true;
 					result = "76";
-				}
-				else
-				{
-					result = "76";
-				}
-
-			}
-			else if (hit.transform.gameObject.tag == "Child")
-			{
-				if (SceneManager.GetActiveScene().name == "Main")
-				{
-					//FindObjectOfType<GameHandler>().isSensing = true;
-					result = "152";
-				}
-				else
-				{
-					result = "152";
-				}
-
 			}
 		}
 		// Use "beBlock.BeInputs" to get the input values

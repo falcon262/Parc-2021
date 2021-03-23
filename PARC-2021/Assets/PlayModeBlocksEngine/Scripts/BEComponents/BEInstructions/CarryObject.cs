@@ -23,14 +23,14 @@ public class CarryObject : BEInstruction
         RaycastHit hit;
         if (Physics.Raycast(targetObject.transform.position, targetObject.transform.TransformDirection(Vector3.forward), out hit))
         {
-            if (hit.transform.gameObject.tag == "Animal" || hit.transform.gameObject.tag == "Child" || hit.transform.gameObject.tag == "Adult")
+            if (hit.transform.gameObject.tag == "FirstAid" || hit.transform.gameObject.tag == "Safe")
             {
 				Debug.Log("We've hit something"+ hit.transform.gameObject.tag);
                 robotClaw.GetComponentInChildren<Animator>().SetTrigger("Carry");
                 hit.transform.gameObject.transform.position = robotClaw.transform.position + new Vector3(0.6f, -0.5f, 0.4f);
                 hit.transform.gameObject.transform.SetParent(robotClaw.transform);
             }
-            else if (hit.transform.gameObject.tag == "Barricade")
+            /*else if (hit.transform.gameObject.tag == "Barricade")
             {
 				Debug.Log("We've hit something"+ hit.transform.gameObject.tag);
                 robotClaw.GetComponentInChildren<Animator>().SetTrigger("Carry");
@@ -44,7 +44,7 @@ public class CarryObject : BEInstruction
                 robotClaw.GetComponentInChildren<Animator>().SetTrigger("Carry");
                 hit.transform.gameObject.transform.position = robotClaw.transform.position + new Vector3(0f, 0.2f, 0.2f);
                 hit.transform.gameObject.transform.SetParent(robotClaw.transform);
-            }
+            }*/
         }
         // Make sure to end the function with a "BeController.PlayNextOutside" method and use "BeController.PlayNextInside" to play child blocks if needed
         BeController.PlayNextOutside(beBlock);

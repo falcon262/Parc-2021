@@ -22,27 +22,15 @@ public class ReleaseObject : BEInstruction
 		GameObject robotClaw = GameObject.FindGameObjectWithTag("Claw").gameObject;
 		GameObject environment = GameObject.FindGameObjectWithTag("Environment").gameObject;
 
-		if (robotClaw.transform.Find("Animal"))
+		if (robotClaw.transform.Find("FirstAid"))
 		{
-			robotClaw.transform.Find("Animal").gameObject.transform.SetParent(environment.transform);
+			robotClaw.transform.Find("FirstAid").gameObject.transform.SetParent(environment.transform);
 		}
-		else if (robotClaw.transform.Find("Child"))
+		else if (robotClaw.transform.Find("Safe"))
 		{
-			robotClaw.transform.Find("Child").gameObject.transform.SetParent(environment.transform);
+			robotClaw.transform.Find("Safe").gameObject.transform.SetParent(environment.transform);
 		}
-		else if (robotClaw.transform.Find("Adult"))
-		{
-			robotClaw.transform.Find("Adult").gameObject.transform.SetParent(environment.transform);
-		}
-		else if (robotClaw.transform.Find("Barricade"))
-		{
-			robotClaw.transform.Find("Barricade").gameObject.transform.SetParent(environment.transform);
-		}
-		else if (robotClaw.transform.Find("Sphere(Clone)"))
-		{
-			robotClaw.transform.Find("Sphere(Clone)").gameObject.transform.SetParent(environment.transform);
-			GameObject.Find("Sphere(Clone)").gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-		}
+		
 
 		// Make sure to end the function with a "BeController.PlayNextOutside" method and use "BeController.PlayNextInside" to play child blocks if needed
 		BeController.PlayNextOutside(beBlock);

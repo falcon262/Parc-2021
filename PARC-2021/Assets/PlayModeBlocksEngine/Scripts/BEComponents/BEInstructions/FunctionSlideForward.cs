@@ -17,7 +17,7 @@ public class FunctionSlideForward : BEInstruction
         {
             
 
-            counterForRepetitions = ((int)(beBlock.BeInputs.numberValues[0]) / 61);
+            counterForRepetitions = (int)(beBlock.BeInputs.numberValues[0]);
             startPos = targetObject.transform.position;
             beBlock.beBlockFirstPlay = false;
         }
@@ -31,7 +31,7 @@ public class FunctionSlideForward : BEInstruction
         {
             if (counterForMovement <= movementDuration)
             {
-                counterForMovement += Time.deltaTime;
+                counterForMovement += Time.deltaTime * 5f;
                 if (targetObject.GetComponent<Collider2D>())
                 {
                     direction = targetObject.transform.right;
@@ -60,7 +60,7 @@ public class FunctionSlideForward : BEInstruction
         {
             if (counterForMovement <= movementDuration)
             {
-                counterForMovement += Time.deltaTime;
+                counterForMovement += Time.deltaTime * 5f;
                 if (targetObject.GetComponent<Collider2D>())
                 {
                     direction = targetObject.transform.right;

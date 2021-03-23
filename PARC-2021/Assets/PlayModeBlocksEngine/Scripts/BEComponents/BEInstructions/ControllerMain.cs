@@ -50,6 +50,7 @@ public class ControllerMain : BEInstruction
             {
                 Shuffle();
             }
+            StartCoroutine(GameObject.FindObjectOfType<Manager>().StartTimer());
                 BeController.PlayNextInside(beBlock);
                           
         }
