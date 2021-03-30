@@ -27,6 +27,27 @@ public class Manager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public float startTime;
     public float timer;
+
+    [Header("Challenge 2 - Rectangle")]
+    public bool bottomRight;
+    public bool bottomLeft;
+    public bool topRight;
+    public bool topLeft;
+    public GameObject left;
+    public GameObject right;
+    public GameObject top;
+    public GameObject bottom;
+    public GameObject Rectangle;
+
+    [Header("Challenge 2 - Triangle")]
+    public bool bottomRightVertex;
+    public bool bottomLeftVertex;
+    public bool apex;
+    public GameObject leftSide;
+    public GameObject rightSide;
+    public GameObject bottomSide;
+    public GameObject Triangle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +71,8 @@ public class Manager : MonoBehaviour
             WinScreen.SetActive(true);
             WinScore.text = "Score: " + score;
         }
+        RectangleLogic();
+        TriangleLogic();
     }
 
     public void MapMenu()
@@ -86,6 +109,64 @@ public class Manager : MonoBehaviour
         }
     }
 
+    void RectangleLogic()
+    {
+        if (bottomRight && topRight && !left.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            left.SetActive(true);
+            bottomRight = false;
+        }
+
+        if(!bottomRight && topRight && topLeft && !top.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            top.SetActive(true);
+        }
+
+        if (!bottomRight && topRight && topLeft && bottomLeft && !right.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            right.SetActive(true);
+        }
+        if (bottomRight && topRight && topLeft && bottomLeft && !bottom.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            bottom.SetActive(true);
+            score += 50;
+            ScoreText.text = "SCORE: " + score;
+            obj1.SetActive(true);
+        }
+
+        /*if (bottomRight && bottomLeft && topRight && topLeft)
+        {
+            obj1.SetActive(true);
+        }*/
+    }
+
+    void TriangleLogic()
+    {
+        if(bottomLeftVertex && bottomRightVertex && !bottomSide.activeSelf)
+        {
+            Triangle.transform.Translate(0, 5.734333333f, 0);
+            bottomSide.SetActive(true);
+            bottomLeftVertex = false;
+        }
+        if(!bottomLeftVertex && bottomRightVertex && apex && !rightSide.activeSelf)
+        {
+            Triangle.transform.Translate(0, 5.734333333f, 0);
+            rightSide.SetActive(true);
+        }
+        if(bottomLeftVertex && bottomRightVertex && apex && !leftSide.activeSelf)
+        {
+            Triangle.transform.Translate(0, 5.734333333f, 0);
+            leftSide.SetActive(true);
+            score += 50;
+            ScoreText.text = "SCORE: " + score;
+            obj2.SetActive(true);
+        }
+    }
+
     public IEnumerator StartTimer()
     {
         timer = startTime;
@@ -96,7 +177,7 @@ public class Manager : MonoBehaviour
             timer -= Time.deltaTime;
             FormatText();
             yield return null;
-        } while (timer > 0);
+        } while (timer > 0 && !WinScreen.activeSelf);
     }
 
     void FormatText()

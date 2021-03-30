@@ -19,7 +19,7 @@ public class BETargetObject : MonoBehaviour
     public float soundfreq;
 
     public AudioSource beAudioSource;
-    //public GameHandler gameHandler;
+    public Manager manager;
     private BEController beController;
     public Animator Dispenser;
     GameObject robotClaw;
@@ -152,6 +152,38 @@ public class BETargetObject : MonoBehaviour
             }
         }*/
              
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Bottom Right")
+        {
+            manager.bottomRight = true;
+        }
+        if(other.gameObject.name == "Bottom Left")
+        {
+            manager.bottomLeft = true;
+        }
+        if(other.gameObject.name == "Top Right")
+        {
+            manager.topRight = true;
+        }
+        if(other.gameObject.name == "Top Left")
+        {
+            manager.topLeft = true;
+        }
+        if(other.gameObject.name == "Apex")
+        {
+            manager.apex = true;
+        }
+        if(other.gameObject.name == "Left Vertex")
+        {
+            manager.bottomLeftVertex = true;
+        }
+        if(other.gameObject.name == "Right Vertex")
+        {
+            manager.bottomRightVertex = true;
+        }
     }
 
     public void ControllerMove()

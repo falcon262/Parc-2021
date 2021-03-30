@@ -46,10 +46,14 @@ public class ControllerMain : BEInstruction
     {
         if(beBlock.BeBlockGroup.isActive)
         {
-            for (int i = 0; i < Random.Range(0, 10); i++)
+            if (SceneManager.GetActiveScene().name == "Challenge 1")
             {
-                Shuffle();
+                for (int i = 0; i < Random.Range(0, 10); i++)
+                {
+                    Shuffle();
+                }
             }
+                
             StartCoroutine(GameObject.FindObjectOfType<Manager>().StartTimer());
                 BeController.PlayNextInside(beBlock);
                           

@@ -17,6 +17,10 @@ public class SceneSelector : MonoBehaviour
     {
         SceneManager.LoadScene("Challenge 1");
     }
+    public void OpenChallenge2()
+    {
+        SceneManager.LoadScene("Challenge 2");
+    }
 
    /* void Selector()
     {
