@@ -1,7 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 using TMPro;
 
 public class Manager : MonoBehaviour
@@ -13,10 +19,12 @@ public class Manager : MonoBehaviour
     public GameObject obj2;
     public GameObject LoseScreen;
     bool timeUp;
+    bool youWin;
     public TextMeshProUGUI LoseScore;
     public GameObject WinScreen;
     public TextMeshProUGUI WinScore;
 
+    public GameObject Rulers;
 
     public Animator amb;
     public GameObject Instructions;
@@ -63,21 +71,69 @@ public class Manager : MonoBehaviour
     {
         if(timer <= 0 && timeUp)
         {
+            timeUp = false;
             LoseScreen.SetActive(true);
             LoseScore.text = "Score: " + score;
+            StartCoroutine(UpdateScore(score));
         }
-        else if (obj1.activeSelf && obj2.activeSelf)
+        else if (obj1.activeSelf && obj2.activeSelf && !youWin)
         {
+            youWin = true;
             WinScreen.SetActive(true);
-            WinScore.text = "Score: " + score;
+            WinScore.text = "Score: " + (int)(score + timer);
+            StartCoroutine(UpdateScore((int)(score + timer)));
         }
         RectangleLogic();
         TriangleLogic();
     }
 
+    IEnumerator UpdateScore(int Highscore)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", Controller.token);
+        form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
+        form.AddField("score", Highscore);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("https://parcrobotics.org/index.php?option=com_games&task=games.updatescore", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (KeyValuePair<string, string> dict in www.GetResponseHeaders())
+                {
+                    sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+                }
+
+                //Print Headers
+                Debug.Log(sb.ToString());
+
+                //Print Body
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
+
     public void MapMenu()
     {
         SceneManager.LoadScene("MapMenu");
+    }
+
+    public void Measure()
+    {
+        if (!Rulers.activeSelf)
+        {
+            Rulers.SetActive(true);
+        }
+        else
+        {
+            Rulers.SetActive(false);
+        }
     }
 
     public void RestartScene()
@@ -111,10 +167,16 @@ public class Manager : MonoBehaviour
 
     void RectangleLogic()
     {
-        if (bottomRight && topRight && !left.activeSelf)
+        if (bottomRight && topRight && !left.activeSelf && !bottom.activeSelf && !top.activeSelf && !right.activeSelf)
         {
             Rectangle.transform.Translate(0, 4.30075f, 0);
             left.SetActive(true);
+            bottomRight = false;
+        }
+        else if (bottomRight && bottomLeft && !left.activeSelf && !bottom.activeSelf && !top.activeSelf && !right.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            bottom.SetActive(true);
             bottomRight = false;
         }
 
@@ -123,12 +185,23 @@ public class Manager : MonoBehaviour
             Rectangle.transform.Translate(0, 4.30075f, 0);
             top.SetActive(true);
         }
+        else if (!bottomRight && bottomLeft && topLeft && !right.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            right.SetActive(true);
+        }
 
         if (!bottomRight && topRight && topLeft && bottomLeft && !right.activeSelf)
         {
             Rectangle.transform.Translate(0, 4.30075f, 0);
             right.SetActive(true);
         }
+        else if (!bottomRight && bottomLeft && topLeft && topRight && !top.activeSelf)
+        {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            top.SetActive(true);
+        }
+
         if (bottomRight && topRight && topLeft && bottomLeft && !bottom.activeSelf)
         {
             Rectangle.transform.Translate(0, 4.30075f, 0);
@@ -137,30 +210,54 @@ public class Manager : MonoBehaviour
             ScoreText.text = "SCORE: " + score;
             obj1.SetActive(true);
         }
-
-        /*if (bottomRight && bottomLeft && topRight && topLeft)
+        else if (bottomRight && topRight && topLeft && bottomLeft && !left.activeSelf)
         {
+            Rectangle.transform.Translate(0, 4.30075f, 0);
+            left.SetActive(true);
+            score += 50;
+            ScoreText.text = "SCORE: " + score;
             obj1.SetActive(true);
-        }*/
+        }
     }
 
     void TriangleLogic()
     {
-        if(bottomLeftVertex && bottomRightVertex && !bottomSide.activeSelf)
+        if(bottomLeftVertex && bottomRightVertex && !bottomSide.activeSelf && !leftSide.activeSelf && !rightSide.activeSelf)
         {
             Triangle.transform.Translate(0, 5.734333333f, 0);
             bottomSide.SetActive(true);
             bottomLeftVertex = false;
         }
+        else if (bottomLeftVertex && apex && !leftSide.activeSelf && !rightSide.activeSelf && !bottomSide.activeSelf)
+        {
+            Triangle.transform.Translate(0, 5.734333333f, 0);
+            leftSide.SetActive(true);
+            bottomLeftVertex = false;
+        }
+
         if(!bottomLeftVertex && bottomRightVertex && apex && !rightSide.activeSelf)
         {
             Triangle.transform.Translate(0, 5.734333333f, 0);
             rightSide.SetActive(true);
         }
+        else if (!bottomLeftVertex && apex && bottomRightVertex && !rightSide.activeSelf)
+        {
+            Triangle.transform.Translate(0, 5.734333333f, 0);
+            rightSide.SetActive(true);
+        }
+
         if(bottomLeftVertex && bottomRightVertex && apex && !leftSide.activeSelf)
         {
             Triangle.transform.Translate(0, 5.734333333f, 0);
             leftSide.SetActive(true);
+            score += 50;
+            ScoreText.text = "SCORE: " + score;
+            obj2.SetActive(true);
+        }
+        else if (bottomLeftVertex && bottomRightVertex && apex && !bottomSide.activeSelf)
+        {
+            Triangle.transform.Translate(0, 5.734333333f, 0);
+            bottomSide.SetActive(true);
             score += 50;
             ScoreText.text = "SCORE: " + score;
             obj2.SetActive(true);

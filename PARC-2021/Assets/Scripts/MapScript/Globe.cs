@@ -12,6 +12,7 @@ public class Globe : MonoBehaviour
     public GameObject pleaseWait;
     public Animator mainMenu;
     public GameObject Challenge;
+    public
     // Start is called before the first frame update
     void Start()
     {
