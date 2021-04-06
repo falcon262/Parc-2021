@@ -10,7 +10,7 @@ public class BankMarker : MonoBehaviour
         if(other.transform.gameObject.tag == "Safe")
         {
             manager.score += 30;
-            manager.ScoreText.text = "SCORE: " + manager.score;
+            manager.ScoreText.text = manager.score.ToString();
             manager.obj1.SetActive(true);
         }
     }

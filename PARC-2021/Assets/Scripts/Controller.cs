@@ -35,8 +35,8 @@ public class Controller : MonoBehaviour
     }
     static userInfo info;
 
-    public int LevelNum;
-    public bool isEnglish;
+    //public int LevelNum;
+    static bool isEnglish;
     public static Controller instance;
     public static string username;
     public static string token;
@@ -159,16 +159,13 @@ public class Controller : MonoBehaviour
 
     }*/
 
-/*    public void EnSelect()
+    public static void SetEnglish(bool lang)
     {
-        isEnglish = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
+        isEnglish = lang;        
     }
 
-    public void FrSelect()
+    public static bool GetIsEnglish()
     {
-        isEnglish = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }*/
+        return isEnglish;
+    }
 }

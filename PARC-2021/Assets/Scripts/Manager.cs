@@ -62,7 +62,7 @@ public class Manager : MonoBehaviour
         obj1.SetActive(false);
         obj2.SetActive(false);
         score = 0;
-        ScoreText.text = "SCORE: " + score;
+        ScoreText.text = score.ToString();
         Cam1.SetActive(true);
         Cam2.SetActive(false);        
     }
@@ -207,7 +207,7 @@ public class Manager : MonoBehaviour
             Rectangle.transform.Translate(0, 4.30075f, 0);
             bottom.SetActive(true);
             score += 50;
-            ScoreText.text = "SCORE: " + score;
+            ScoreText.text = score.ToString();
             obj1.SetActive(true);
         }
         else if (bottomRight && topRight && topLeft && bottomLeft && !left.activeSelf)
@@ -215,7 +215,7 @@ public class Manager : MonoBehaviour
             Rectangle.transform.Translate(0, 4.30075f, 0);
             left.SetActive(true);
             score += 50;
-            ScoreText.text = "SCORE: " + score;
+            ScoreText.text = score.ToString();
             obj1.SetActive(true);
         }
     }
@@ -251,7 +251,7 @@ public class Manager : MonoBehaviour
             Triangle.transform.Translate(0, 5.734333333f, 0);
             leftSide.SetActive(true);
             score += 50;
-            ScoreText.text = "SCORE: " + score;
+            ScoreText.text = score.ToString();
             obj2.SetActive(true);
         }
         else if (bottomLeftVertex && bottomRightVertex && apex && !bottomSide.activeSelf)
@@ -259,7 +259,7 @@ public class Manager : MonoBehaviour
             Triangle.transform.Translate(0, 5.734333333f, 0);
             bottomSide.SetActive(true);
             score += 50;
-            ScoreText.text = "SCORE: " + score;
+            ScoreText.text = score.ToString();
             obj2.SetActive(true);
         }
     }
@@ -285,19 +285,19 @@ public class Manager : MonoBehaviour
         //timerText.text = "TIME: " + minutes + ":" + seconds;
         if(minutes < 10 && seconds > 9)
         {
-            timerText.text = "TIME: " + "0" + minutes + ":" + seconds;
+            timerText.text = "0" + minutes + ":" + seconds;
         }
         else if (minutes < 10 && seconds < 10)
         {
-            timerText.text = "TIME: " + "0" + minutes + ":0" + seconds;
+            timerText.text = "0" + minutes + ":0" + seconds;
         }
         else if (minutes > 9 && seconds < 10)
         {
-            timerText.text = "TIME: " + minutes + ":0" + seconds;
+            timerText.text = minutes + ":0" + seconds;
         }
         else
         {
-            timerText.text = "TIME: " + minutes + ":" + seconds;
+            timerText.text = minutes + ":" + seconds;
         }
     }
 }

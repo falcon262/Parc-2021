@@ -39,7 +39,7 @@ public class UserRequests : MonoBehaviour
     }
 
 
-    /*IEnumerator SigninRequest()
+/*    IEnumerator SigninRequest()
     {
         WWWForm form = new WWWForm();
         form.AddField("username", "joejoe");
@@ -83,7 +83,7 @@ public class UserRequests : MonoBehaviour
                     Controller.Highscore = info.maxscore;
                     username.text = "HI " + info.name;
                     highscore.text = "HIGHSCORE: " + info.maxscore;
-                    
+
 
                     //StartCoroutine(SubmitWait());
                 }

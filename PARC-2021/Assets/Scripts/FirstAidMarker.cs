@@ -12,7 +12,7 @@ public class FirstAidMarker : MonoBehaviour
             other.transform.gameObject.SetActive(false);
             manager.amb.SetTrigger("Drive");
             manager.score += 20;
-            manager.ScoreText.text = "SCORE: " + manager.score;
+            manager.ScoreText.text = manager.score.ToString();
             manager.obj2.SetActive(true);
         }
     }
