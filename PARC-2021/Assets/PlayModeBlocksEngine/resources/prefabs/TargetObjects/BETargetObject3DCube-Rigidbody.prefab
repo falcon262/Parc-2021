@@ -5001,6 +5001,7 @@ MonoBehaviour:
   objOnce: 0
   soundfreq: 0
   beAudioSource: {fileID: 0}
+  manager: {fileID: 0}
   Dispenser: {fileID: 0}
   Ball: {fileID: 0}
   BallPoint: {fileID: 0}

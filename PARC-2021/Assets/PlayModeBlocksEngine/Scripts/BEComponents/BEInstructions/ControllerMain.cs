@@ -53,9 +53,15 @@ public class ControllerMain : BEInstruction
                     Shuffle();
                 }
             }
-                
-            StartCoroutine(GameObject.FindObjectOfType<Manager>().StartTimer());
-                BeController.PlayNextInside(beBlock);
+            if (SceneManager.GetActiveScene().name != "Challenge 4")
+            {
+                StartCoroutine(GameObject.FindObjectOfType<Manager>().StartTimer());
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 4" && !FindObjectOfType<Manager>().timeStartsOnce)
+            {
+                StartCoroutine(GameObject.FindObjectOfType<Manager>().StartTimer());
+            }
+            BeController.PlayNextInside(beBlock);
                           
         }
     }

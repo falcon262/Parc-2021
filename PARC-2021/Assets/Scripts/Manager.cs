@@ -18,7 +18,7 @@ public class Manager : MonoBehaviour
     public GameObject obj1;
     public GameObject obj2;
     public GameObject LoseScreen;
-    bool timeUp;
+    public bool timeUp;
     bool youWin;
     public TextMeshProUGUI LoseScore;
     public GameObject WinScreen;
@@ -56,15 +56,73 @@ public class Manager : MonoBehaviour
     public GameObject bottomSide;
     public GameObject Triangle;
 
+    [Header("Challenge 3 - Blockly Challenges")]
+    public GameObject Move;
+    public GameObject Rotate;
+    public GameObject Turn;
+    public GameObject TurnLeft;
+    public GameObject TurnRight;
+    public GameObject FaceForward;
+    public GameObject CarryObject;
+    public GameObject ReleaseObject;
+    public GameObject FuncitonIf;
+    public GameObject FunctionRepeat;
+    public GameObject FunctionRepeatForever;
+    public GameObject FunctionRepeatUntil;
+    public GameObject FunctionWait;
+    public GameObject Sound;
+    public GameObject Operators;
+    public GameObject Sensors;
+    public GameObject LogicGates;
+    public GameObject Variables;
+    public int blockCount = 0;
+    public GameObject M1;
+    public GameObject M2;
+    public GameObject M3;
+    public GameObject M4;
+    public GameObject F1;
+    public GameObject F2;
+    public GameObject F3;
+    public GameObject F4;
+    public GameObject Robot;
+    public Vector3 initPos;
+    public bool timeStartsOnce = false;
+    bool tick1 = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        obj1.SetActive(false);
-        obj2.SetActive(false);
-        score = 0;
-        ScoreText.text = score.ToString();
-        Cam1.SetActive(true);
-        Cam2.SetActive(false);        
+        try
+        {
+            score = 0;
+            ScoreText.text = score.ToString();
+            if(SceneManager.GetActiveScene().name == "Challenge 4")
+            {
+                initPos = Robot.transform.position;
+                
+                Rotate.SetActive(false);
+                Turn.SetActive(false);
+                FaceForward.SetActive(false);
+                CarryObject.SetActive(false);
+                ReleaseObject.SetActive(false);
+                FuncitonIf.SetActive(false);
+                FunctionRepeatForever.SetActive(false);
+                FunctionRepeatUntil.SetActive(false);
+                FunctionWait.SetActive(false);
+                Sound.SetActive(false);
+                Operators.SetActive(false);
+                Sensors.SetActive(false);
+                LogicGates.SetActive(false);
+                Variables.SetActive(false);
+            }
+        }
+        catch (Exception except)
+        {
+            Debug.Log(except.Source);
+            Debug.Log(except.Data);
+            Debug.Log(except.ToString());
+        }
+        
     }
 
     private void Update()
@@ -74,17 +132,99 @@ public class Manager : MonoBehaviour
             timeUp = false;
             LoseScreen.SetActive(true);
             LoseScore.text = "Score: " + score;
-            StartCoroutine(UpdateScore(score));
+            if(SceneManager.GetActiveScene().name == "Challenge 1")
+            {
+                if (score > Controller.c1Highscore)
+                {
+                    Controller.c1Highscore = score;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 2")
+            {
+                if (score > Controller.c2Highscore)
+                {
+                    Controller.c2Highscore = score;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 3")
+            {
+                if (score > Controller.c3Highscore)
+                {
+                    Controller.c3Highscore = score;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 4")
+            {
+                if (score > Controller.c4Highscore)
+                {
+                    Controller.c4Highscore = score;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore));
         }
         else if (obj1.activeSelf && obj2.activeSelf && !youWin)
         {
             youWin = true;
             WinScreen.SetActive(true);
             WinScore.text = "Score: " + (int)(score + timer);
-            StartCoroutine(UpdateScore((int)(score + timer)));
+            int challengeWinScore = (int)(score + timer);
+            if (SceneManager.GetActiveScene().name == "Challenge 1")
+            {
+                if (challengeWinScore > Controller.c1Highscore)
+                {
+                    Controller.c1Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 2")
+            {
+                if (challengeWinScore > Controller.c2Highscore)
+                {
+                    Controller.c2Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 3")
+            {
+                if (challengeWinScore > Controller.c3Highscore)
+                {
+                    Controller.c3Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 4")
+            {
+                if (challengeWinScore > Controller.c4Highscore)
+                {
+                    Controller.c4Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+            }
+
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore));
+        }
+        else if (SceneManager.GetActiveScene().name == "Challenge 3" && obj1.activeSelf && !youWin)
+        {
+            youWin = true;
+            WinScreen.SetActive(true);
+            WinScore.text = "Score: " + (int)(score + timer);
+            int challengeWinScore = (int)(score + timer);
+            
+                if (challengeWinScore > Controller.c3Highscore)
+                {
+                    Controller.c3Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                }
+
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore));
         }
         RectangleLogic();
         TriangleLogic();
+        Challenge3Logic();
     }
 
     IEnumerator UpdateScore(int Highscore)
@@ -115,6 +255,44 @@ public class Manager : MonoBehaviour
 
                 //Print Body
                 Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
+
+    IEnumerator UpdateUserDetails(string c1, string c2, string c3, string c4)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", Controller.token);
+        form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
+        form.AddField("settings", c1 + ":" + c2 + ":" + c3 + ":" + c4);
+        //form.AddField("settings", "sounds:"+"on");
+        //form.AddBinaryData("settings", File.ReadAllBytes(Application.persistentDataPath + "/SavedCodes/"), Path.GetFileName(Application.persistentDataPath + "/SavedCodes/somefile.BE"));
+
+        using (UnityWebRequest www = UnityWebRequest.Post("https://parcrobotics.org/index.php?option=com_games&task=games.updateusersetting", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (KeyValuePair<string, string> dict in www.GetResponseHeaders())
+                {
+                    sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+                }
+                //Print Headers
+                //Debug.Log(sb.ToString());
+
+                //Print Body
+                //Debug.Log(www.downloadHandler.text);
+
+
+                //Controller.codeName.Clear();
+                //Controller.serverCode.Clear();
+                //StartCoroutine(Controller.UserDetails());
             }
         }
     }
@@ -162,6 +340,32 @@ public class Manager : MonoBehaviour
         {
             Cam1.SetActive(true);
             Cam2.SetActive(false);
+        }
+    }
+
+    void Challenge3Logic()
+    {
+        if(SceneManager.GetActiveScene().name == "Challenge 4")
+        {
+            if (obj1.activeSelf && !tick1)
+            {
+                M1.SetActive(false);
+                M2.SetActive(true);
+                FuncitonIf.SetActive(true);
+                Sensors.SetActive(true);
+                FindObjectOfType<BEController>().MainStop();
+                FindObjectOfType<BEController>().Play.interactable = true;
+                FindObjectOfType<SaveLoadCode>().BEClearCode();
+                timeStartsOnce = true;
+                tick1 = true;
+                blockCount = 0;
+                Robot.transform.position = initPos;
+            }
+
+            if(blockCount > 8)
+            {
+                RestartScene();
+            }
         }
     }
 

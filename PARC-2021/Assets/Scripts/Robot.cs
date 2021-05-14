@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Robot : MonoBehaviour
 {
@@ -12,10 +14,30 @@ public class Robot : MonoBehaviour
     public GameObject Wheel2;
     public GameObject Wheel3;
     public GameObject Wheel4;
-
+    public Manager manager;
+    public GameObject GO;
+    public Button play;
     public float torque = 200;
     public float maxSteerAngle = 30;
+    public TextMeshProUGUI crumbUI;
+    public GameObject crumb;
 
+    public GameObject[] mazes;
+
+    int crumCount = 100;
+
+    bool gameStart;
+
+    private void Awake()
+    {
+        int n = Random.Range(0, mazes.Length);
+        Instantiate(mazes[n], mazes[n].transform.position, mazes[n].transform.rotation);
+    }
+
+    private void Start()
+    {
+        crumbUI.text = crumCount.ToString();
+    }
 
     void Go(float accel, float steer)
     {
@@ -52,10 +74,68 @@ public class Robot : MonoBehaviour
         Wheel4.transform.rotation = quat4 * localRot;
     }
 
+    
+
     void Update()
     {
-        float a = Input.GetAxis("Vertical");
-        float s = Input.GetAxis("Horizontal");
-        Go(a, s);
+        if (gameStart)
+        {
+            float a = Input.GetAxis("Vertical");
+            float s = Input.GetAxis("Horizontal");
+            Go(a, s);
+
+            if (crumCount > 0)
+            {
+                BreadCrumb();
+            }
+            
+        }
+
+        if (!manager.timeUp)
+        {
+            gameStart = false;
+        }
+    }
+
+    public void StartGame()
+    {
+        gameStart = true;
+
+        StartCoroutine(manager.StartTimer());
+        GO.SetActive(true);
+        play.interactable = false;
+    }
+
+    void BreadCrumb()
+    {
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            Instantiate(crumb, transform.position + new Vector3(0, -0.17f, 0), transform.rotation);
+            crumCount--;
+            crumbUI.text = crumCount.ToString();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "crumb")
+        {
+            if (Input.GetKey(KeyCode.L))
+            {
+                Destroy(other.gameObject);
+                crumCount++;
+                crumbUI.text = crumCount.ToString();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "FinishLine")
+        {
+            gameStart = false;
+            manager.obj1.SetActive(true);
+            manager.score += 100;
+        }
     }
 }

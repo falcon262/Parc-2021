@@ -30,6 +30,15 @@ public class UserRequests : MonoBehaviour
     public TextMeshProUGUI highscore;
 
 
+    public GameObject MainMenu;
+    public GameObject LoginMenu;
+    public Animator InvalidDetails;
+    public TMP_InputField userNameInput;
+    public TMP_InputField passwordInput;
+    public Button Submit;
+    public Controller controller;
+
+
     private const string BaseURL = "https://parcrobotics.org/index.php?option=com_games&task=games.login";
 
 
@@ -38,12 +47,30 @@ public class UserRequests : MonoBehaviour
         StartCoroutine(FetchUrl());
     }
 
+    /*private void Start()
+    {
+        if (!Controller.userEntered)
+        {
+            Submit.onClick.AddListener(delegate
+            {
+                StartCoroutine(SigninRequest(userNameInput.text, passwordInput.text));
+            });
+        }
+        else
+        {
+            LoginMenu.SetActive(false);
+            MainMenu.SetActive(true);
+            StartCoroutine(SigninRequest(Controller.Entryname, Controller.password));
+        }
 
-/*    IEnumerator SigninRequest()
+    }
+
+
+    IEnumerator SigninRequest(string Username, string Password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("username", "joejoe");
-        form.AddField("password", "thompson@19");
+        form.AddField("username", Username);
+        form.AddField("password", Password);
         form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
 
         using (UnityWebRequest www = UnityWebRequest.Post("https://parcrobotics.org/index.php?option=com_games&task=games.login", form))
@@ -70,22 +97,26 @@ public class UserRequests : MonoBehaviour
                 Debug.Log(www.downloadHandler.text);
                 if (www.downloadHandler.text.Contains("404"))
                 {
-                    //InvalidDetails.SetTrigger("Invalid");
-                    Debug.Log("You have an error");
-
+                    InvalidDetails.SetTrigger("Invalid");
                 }
                 else if (www.downloadHandler.text.Contains("200"))
                 {
-
+                    Controller.password = Password;
+                    Controller.Entryname = Username;
+                    if (!MainMenu.activeSelf && LoginMenu.activeSelf)
+                    {
+                        MainMenu.SetActive(true);
+                        LoginMenu.SetActive(false);
+                    }
                     info = JsonUtility.FromJson<userInfo>(www.downloadHandler.text);
                     Controller.username = info.name;
                     Controller.token = info.token;
                     Controller.Highscore = info.maxscore;
                     username.text = "HI " + info.name;
                     highscore.text = "HIGHSCORE: " + info.maxscore;
+                    Controller.userEntered = true;
 
-
-                    //StartCoroutine(SubmitWait());
+                    StartCoroutine(controller.UserDetails());
                 }
             }
         }
@@ -160,6 +191,8 @@ public class UserRequests : MonoBehaviour
                         Controller.Highscore = info.maxscore;
                         username.text = "HI " + info.name;
                         highscore.text = "HIGHSCORE: " + info.maxscore;
+
+                        StartCoroutine(controller.UserDetails());
                         //StartCoroutine(Controller.UserDetails());
                         //Debug.Log(Controller.username);
                         //Debug.Log(Controller.token);

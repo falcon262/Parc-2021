@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class Globe : MonoBehaviour
@@ -12,7 +13,7 @@ public class Globe : MonoBehaviour
     public GameObject pleaseWait;
     public Animator mainMenu;
     public GameObject Challenge;
-    public
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,8 @@ public class Globe : MonoBehaviour
             (delegate 
             { 
                 startPressed = true;
+                AnalyticsResult analyticsResult = Analytics.CustomEvent("Game Started");
+                Debug.Log("analyticsResult: " + analyticsResult);
                 if (!slowStop)
                     pleaseWait.SetActive(true);
                 else

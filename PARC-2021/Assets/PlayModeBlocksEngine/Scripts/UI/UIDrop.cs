@@ -66,10 +66,11 @@ public class UIDrop : MonoBehaviour, IDropHandler, IPointerClickHandler
 
             if (droppedBlock.BeController.ghostBlock.transform.parent != null)
             {
-                SetBlockAtGhostPos(droppedBlock);
+                SetBlockAtGhostPos(droppedBlock);               
             }
             else if (transform.name == "ProgrammingEnv")
             {
+                
                 droppedBlock.transform.SetParent(transform);
                 droppedBlock.transform.SetSiblingIndex(index);
 
@@ -120,6 +121,7 @@ public class UIDrop : MonoBehaviour, IDropHandler, IPointerClickHandler
                 if (!targetObject.beBlockGroupsList.Contains(droppedBlock))
                 {
                     targetObject.beBlockGroupsList.Add(droppedBlock);
+                    FindObjectOfType<Manager>().blockCount++;
                 }
 
                 if (droppedBlock.blockType == BEBlock.BlockTypeItems.trigger)
@@ -221,6 +223,7 @@ public class UIDrop : MonoBehaviour, IDropHandler, IPointerClickHandler
         try
         {
             ghostTransform.parent.GetComponent<BEBlock>().beChildBlocksList.Insert(ghostTransform.GetSiblingIndex() - 2, droppedBlock);
+            FindObjectOfType<Manager>().blockCount++;
         }
         catch
         {

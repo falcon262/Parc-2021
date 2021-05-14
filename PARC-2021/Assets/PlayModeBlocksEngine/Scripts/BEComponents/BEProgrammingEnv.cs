@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +21,20 @@ public class BEProgrammingEnv : MonoBehaviour
         contentRectT.offsetMax = new Vector2(0, 0);
 
         // v1.2 -Custom UI Scale section on the inspector for adjusting the scale based on the screen width
-        GetComponent<Canvas>().scaleFactor = targetObject.BeController.beUIController.uiScale; 
+        try
+        {
+            GetComponent<Canvas>().scaleFactor = targetObject.BeController.beUIController.uiScale;
+        }
+        catch (NullReferenceException except)
+        {
+            Debug.Log("This is a test");
+            Debug.Log(except.StackTrace);
+        }
         
+
         // v1.0.1 -Bug fix: null when getting programming environment from BEProgrammingEnv
         GetComponentInChildren<SaveLoadCode>().beTargetObject = TargetObject;
+        
+        
     }
 }

@@ -35,6 +35,10 @@ TagManager:
   - FirstAid
   - Safe
   - RecMarker
+  - crumb
+  - FinishLine
+  - F1
+  - F2
   layers:
   - Default
   - TransparentFX
