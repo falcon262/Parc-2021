@@ -47,6 +47,7 @@ public class Controller : MonoBehaviour
     public static int c2Highscore = 0;
     public static int c3Highscore = 0;
     public static int c4Highscore = 0;
+    public static int c5Highscore = 0;
     public static bool userEntered = false;
     public static string previousSettings = "";
     public static List<string> codeName = new List<string>();
@@ -132,14 +133,14 @@ public class Controller : MonoBehaviour
                 usersettings = JsonUtility.FromJson<userSettings>(www.downloadHandler.text);
                 if(usersettings.user_game_settings == "")
                 {
-                    StartCoroutine(UpdateUserDetails(Highscore.ToString(), c2Highscore.ToString(), c3Highscore.ToString(), c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Highscore.ToString(), c2Highscore.ToString(), c3Highscore.ToString(), c4Highscore.ToString(), c5Highscore.ToString()));
                 }
                 else
                 {
                     string[] scores = usersettings.user_game_settings.Split(':');
-                    if(scores.Length == 3)
+                    if(scores.Length == 4)
                     {
-                        StartCoroutine(UpdateUserDetails(scores[0], scores[1], scores[2], c4Highscore.ToString()));
+                        StartCoroutine(UpdateUserDetails(scores[0], scores[1], scores[2], scores[3], c5Highscore.ToString()));
                     }
                     else
                     {
@@ -147,6 +148,7 @@ public class Controller : MonoBehaviour
                         c2Highscore = int.Parse(scores[1]);
                         c3Highscore = int.Parse(scores[2]);
                         c4Highscore = int.Parse(scores[3]);
+                        c5Highscore = int.Parse(scores[4]);
                     }                    
                 }
                 //Debug.Log(usersettings.user_game_settings);
@@ -186,12 +188,12 @@ public class Controller : MonoBehaviour
 
     }
 
-    IEnumerator UpdateUserDetails(string c1, string c2, string c3, string c4)
+    IEnumerator UpdateUserDetails(string c1, string c2, string c3, string c4, string c5)
     {
         WWWForm form = new WWWForm();
         form.AddField("token", Controller.token);
         form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
-        form.AddField("settings", c1 + ":" + c2 + ":" + c3 + ":" + c4);
+        form.AddField("settings", c1 + ":" + c2 + ":" + c3 + ":" + c4 + ":" + c5);
         //form.AddField("settings", "sounds:"+"on");
         //form.AddBinaryData("settings", File.ReadAllBytes(Application.persistentDataPath + "/SavedCodes/"), Path.GetFileName(Application.persistentDataPath + "/SavedCodes/somefile.BE"));
 
@@ -215,6 +217,7 @@ public class Controller : MonoBehaviour
                 c2Highscore = int.Parse(c2);
                 c3Highscore = int.Parse(c3);
                 c4Highscore = int.Parse(c4);
+                c5Highscore = int.Parse(c5);
                 //Print Headers
                 //Debug.Log(sb.ToString());
 

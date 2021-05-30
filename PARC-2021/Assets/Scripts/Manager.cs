@@ -88,6 +88,7 @@ public class Manager : MonoBehaviour
     public Vector3 initPos;
     public bool timeStartsOnce = false;
     bool tick1 = false;
+    public Slider temp;
 
     // Start is called before the first frame update
     void Start()
@@ -137,7 +138,7 @@ public class Manager : MonoBehaviour
                 if (score > Controller.c1Highscore)
                 {
                     Controller.c1Highscore = score;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Challenge 2")
@@ -145,7 +146,7 @@ public class Manager : MonoBehaviour
                 if (score > Controller.c2Highscore)
                 {
                     Controller.c2Highscore = score;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Challenge 3")
@@ -153,7 +154,7 @@ public class Manager : MonoBehaviour
                 if (score > Controller.c3Highscore)
                 {
                     Controller.c3Highscore = score;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Challenge 4")
@@ -161,10 +162,18 @@ public class Manager : MonoBehaviour
                 if (score > Controller.c4Highscore)
                 {
                     Controller.c4Highscore = score;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
-            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore));
+            else if (SceneManager.GetActiveScene().name == "Challenge 5")
+            {
+                if (score > Controller.c5Highscore)
+                {
+                    Controller.c5Highscore = score;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
+                }
+            }
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore + Controller.c5Highscore));
         }
         else if (obj1.activeSelf && obj2.activeSelf && !youWin)
         {
@@ -177,7 +186,7 @@ public class Manager : MonoBehaviour
                 if (challengeWinScore > Controller.c1Highscore)
                 {
                     Controller.c1Highscore = challengeWinScore;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Challenge 2")
@@ -185,7 +194,7 @@ public class Manager : MonoBehaviour
                 if (challengeWinScore > Controller.c2Highscore)
                 {
                     Controller.c2Highscore = challengeWinScore;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Challenge 3")
@@ -193,7 +202,7 @@ public class Manager : MonoBehaviour
                 if (challengeWinScore > Controller.c3Highscore)
                 {
                     Controller.c3Highscore = challengeWinScore;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Challenge 4")
@@ -201,11 +210,19 @@ public class Manager : MonoBehaviour
                 if (challengeWinScore > Controller.c4Highscore)
                 {
                     Controller.c4Highscore = challengeWinScore;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Challenge 5")
+            {
+                if (challengeWinScore > Controller.c5Highscore)
+                {
+                    Controller.c5Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
             }
 
-            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore));
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore + Controller.c5Highscore));
         }
         else if (SceneManager.GetActiveScene().name == "Challenge 3" && obj1.activeSelf && !youWin)
         {
@@ -217,10 +234,25 @@ public class Manager : MonoBehaviour
                 if (challengeWinScore > Controller.c3Highscore)
                 {
                     Controller.c3Highscore = challengeWinScore;
-                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString()));
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
                 }
 
-            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore));
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore + Controller.c5Highscore));
+        }
+        else if (SceneManager.GetActiveScene().name == "Challenge 5" && obj1.activeSelf && !youWin)
+        {
+            youWin = true;
+            WinScreen.SetActive(true);
+            WinScore.text = "Score: " + (int)(score + timer);
+            int challengeWinScore = (int)(score + timer);
+            
+                if (challengeWinScore > Controller.c5Highscore)
+                {
+                    Controller.c5Highscore = challengeWinScore;
+                    StartCoroutine(UpdateUserDetails(Controller.c1Highscore.ToString(), Controller.c2Highscore.ToString(), Controller.c3Highscore.ToString(), Controller.c4Highscore.ToString(), Controller.c5Highscore.ToString()));
+                }
+
+            StartCoroutine(UpdateScore(Controller.c1Highscore + Controller.c2Highscore + Controller.c3Highscore + Controller.c4Highscore + Controller.c5Highscore));
         }
         RectangleLogic();
         TriangleLogic();
@@ -259,12 +291,12 @@ public class Manager : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateUserDetails(string c1, string c2, string c3, string c4)
+    IEnumerator UpdateUserDetails(string c1, string c2, string c3, string c4, string c5)
     {
         WWWForm form = new WWWForm();
         form.AddField("token", Controller.token);
         form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
-        form.AddField("settings", c1 + ":" + c2 + ":" + c3 + ":" + c4);
+        form.AddField("settings", c1 + ":" + c2 + ":" + c3 + ":" + c4 + ":" + c5);
         //form.AddField("settings", "sounds:"+"on");
         //form.AddBinaryData("settings", File.ReadAllBytes(Application.persistentDataPath + "/SavedCodes/"), Path.GetFileName(Application.persistentDataPath + "/SavedCodes/somefile.BE"));
 
@@ -347,6 +379,7 @@ public class Manager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name == "Challenge 4")
         {
+            temp.value = blockCount;
             if (obj1.activeSelf && !tick1)
             {
                 M1.SetActive(false);
@@ -362,7 +395,7 @@ public class Manager : MonoBehaviour
                 Robot.transform.position = initPos;
             }
 
-            if(blockCount > 8)
+            if(blockCount > 7)
             {
                 RestartScene();
             }

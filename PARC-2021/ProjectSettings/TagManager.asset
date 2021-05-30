@@ -39,6 +39,10 @@ TagManager:
   - FinishLine
   - F1
   - F2
+  - MidPoint
+  - Fire
+  - rocket
+  - SpaceStation
   layers:
   - Default
   - TransparentFX

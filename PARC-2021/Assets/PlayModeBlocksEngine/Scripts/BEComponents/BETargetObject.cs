@@ -137,7 +137,11 @@ public class BETargetObject : MonoBehaviour
 
     void Start()
     {
-        robotClaw = transform.Find("The Beetle v2").transform.Find("Claw").gameObject;
+        if(SceneManager.GetActiveScene().name != "Challenge 5")
+        {
+            robotClaw = transform.Find("The Beetle v2").transform.Find("Claw").gameObject;
+        }
+        
         beBlockGroupsList = new List<BEBlock>();
         beAudioSource = GetComponent<AudioSource>();
     }

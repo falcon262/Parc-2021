@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -121,7 +122,7 @@ public class UIDrop : MonoBehaviour, IDropHandler, IPointerClickHandler
                 if (!targetObject.beBlockGroupsList.Contains(droppedBlock))
                 {
                     targetObject.beBlockGroupsList.Add(droppedBlock);
-                    FindObjectOfType<Manager>().blockCount++;
+                    //FindObjectOfType<Manager>().blockCount++;
                 }
 
                 if (droppedBlock.blockType == BEBlock.BlockTypeItems.trigger)

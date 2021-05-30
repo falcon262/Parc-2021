@@ -179,9 +179,9 @@ public class Translater : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Challenge 4")
         {
             MainRules.text =
-           "<b>Objective - ESCAPE THE MAZE 2:</b> This challenge will test your problem solving skills. Help your robot make its way to the endpoint marker of each maze to complete this challenge. You have a limited amount of blocks(resources) you can use. Try to use less blocks to avoid crashing your robot. (The game restarts).\n" +
+           "<b>Objective - ESCAPE THE MAZE 2:</b> This challenge will test your problem solving skills. Help your robot make its way to the endpoint marker of each maze to complete this challenge. You have a limited amount of blocks (resources) you can use. Try to use less blocks to avoid crashing your robot. (The game restarts if your robot crashes). If you use more than 7 blocks and/or make more than 7 changes to your blocks the robot will crush. The red bar on the screen (TEMP%) shows your robots temperature level the greater it increases the closer you get to your robot crushing." +
            "\nCompleting this challenge scores you 100 points.\n" +
-           "\nYou have 1 minute 30 seconds to complete this challenge after the play button has been pressed. Your best score will be selected.\n";
+           "\nYou have 1 minute 30 seconds to complete two separate mazes of this challenge after the play button has been pressed. Your best score will be selected as your final score.\n";
             GameFieldHeading.text = "CHALLENGE 4 INTERACTABLES";
             MazeEndpoint.text = "MazeEndpoint";
         }
@@ -302,9 +302,9 @@ public class Translater : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Challenge 4")
         {
             MainRules.text =
-           "<b> Objectif - ÉCHAPPER DU MAZE 2: </b> Ce défi va tester vos compétences en résolution de problèmes. Aidez votre robot se frayer un chemin vers le marqueur de terminaison de chaque labyrinthe pour compléter ce défi. Vous avez une quantité limitée de blocs (ressources) que vous pouvez utiliser. Essayez d'utiliser moins de blocs pour éviter de planter votre robot. (Le jeu redémarre).\n" +
+           "<b> Objectif - ÉCHAPPER DU MAZE 2: </b> Ce défi testera vos compétences en résolution de problèmes. Aidez votre robot à atteindre le marqueur de point final de chaque labyrinthe pour relever ce défi. Vous disposez d'un nombre limité de blocs (ressources) que vous pouvez utiliser. Essayez d'utiliser moins de blocs pour éviter de planter votre robot. (Le jeu redémarre si votre robot tombe en panne). Si vous utilisez plus de 7 blocs ou si vous modifiez vos blocs, le robot écrasera. La barre rouge sur l'écran (TEMP%) indique le niveau de température de votre robot, plus il augmente au fur et à mesure que vous vous rapprochez de l'écrasement de votre robot. \n" +
            "\nTerminer ce défi vous rapporte 100 points.\n" +
-           "\nVous avez 1 minute 30 secondes pour terminer ce défi après avoir appuyé sur le bouton de lecture. Votre meilleur score sera sélectionné.\n";
+           "\nVous avez 1 minute 30 secondes pour terminer deux labyrinthes séparés de ce défi après avoir appuyé sur le bouton de lecture. Votre meilleur score sera sélectionné comme votre score final.\n";
             GameFieldHeading.text = "DÉFI 4 INTERACTABLES";
             MazeEndpoint.text = "Point de terminaison du labyrinthe";
 
