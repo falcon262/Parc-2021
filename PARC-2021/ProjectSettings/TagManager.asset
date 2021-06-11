@@ -43,6 +43,12 @@ TagManager:
   - Fire
   - rocket
   - SpaceStation
+  - 2
+  - 4
+  - 6
+  - 8
+  - 10
+  - blueball
   layers:
   - Default
   - TransparentFX

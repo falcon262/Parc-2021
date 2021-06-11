@@ -53,7 +53,7 @@ public class ControllerMain : BEInstruction
                     Shuffle();
                 }
             }
-            if (SceneManager.GetActiveScene().name != "Challenge 4" && SceneManager.GetActiveScene().name != "Challenge 5")
+            if (SceneManager.GetActiveScene().name != "Challenge 4" && SceneManager.GetActiveScene().name != "Challenge 5" && SceneManager.GetActiveScene().name != "Challenge 6")
             {
                 StartCoroutine(GameObject.FindObjectOfType<Manager>().StartTimer());
             }

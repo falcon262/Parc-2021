@@ -123,88 +123,88 @@ public class UserRequests : MonoBehaviour
 
     }
 
-    /*IEnumerator FetchUrl()
-    {
-        string token;
-        //"https://parcrobotics.org/index.php?option=com_games&task=game.load&data=P8222F&game=Tech"
-        string embedUrl = Application.absoluteURL;
-        using (UnityWebRequest www = UnityWebRequest.Get(embedUrl))
+    /*    IEnumerator FetchUrl()
         {
-
-            yield return www.SendWebRequest();
-
-            if (www.isNetworkError || www.isHttpError)
+            string token;
+            //"https://parcrobotics.org/index.php?option=com_games&task=game.load&data=P8222F&game=Tech"
+            string embedUrl = Application.absoluteURL;
+            using (UnityWebRequest www = UnityWebRequest.Get(embedUrl))
             {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                StringBuilder sb = new StringBuilder();
-                foreach (KeyValuePair<string, string> dict in www.GetResponseHeaders())
+
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
                 {
-                    sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+                    Debug.Log(www.error);
                 }
-
-                //Print Headers
-                //Debug.Log(sb.ToString());
-
-                //Print Body
-                //Debug.Log(www.url);
-                string someUrl = www.url;
-                string urlstring = someUrl;
-                int startindex = 72;
-                int endindex = 6;
-                token = urlstring.Substring(startindex, endindex);
-                //Debug.Log(token);
-                //tokenText.text = token;
-
-
-                WWWForm form = new WWWForm();
-                form.AddField("token", token);
-                form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
-
-                using (UnityWebRequest userRequest = UnityWebRequest.Post("https://parcrobotics.org/index.php?option=com_games&task=games.userinfo", form))
+                else
                 {
-                    yield return userRequest.SendWebRequest();
-
-                    if (userRequest.isNetworkError || www.isHttpError)
+                    StringBuilder sb = new StringBuilder();
+                    foreach (KeyValuePair<string, string> dict in www.GetResponseHeaders())
                     {
-                        Debug.Log(userRequest.error);
+                        sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
                     }
-                    else
+
+                    //Print Headers
+                    //Debug.Log(sb.ToString());
+
+                    //Print Body
+                    //Debug.Log(www.url);
+                    string someUrl = www.url;
+                    string urlstring = someUrl;
+                    int startindex = 72;
+                    int endindex = 6;
+                    token = urlstring.Substring(startindex, endindex);
+                    //Debug.Log(token);
+                    //tokenText.text = token;
+
+
+                    WWWForm form = new WWWForm();
+                    form.AddField("token", token);
+                    form.AddField("securityid", "ejT2dtEeas9jePrE8jTTZ2xKEPYdnQ2d");
+
+                    using (UnityWebRequest userRequest = UnityWebRequest.Post("https://parcrobotics.org/index.php?option=com_games&task=games.userinfo", form))
                     {
-                        StringBuilder feedback = new StringBuilder();
-                        foreach (KeyValuePair<string, string> dict in userRequest.GetResponseHeaders())
+                        yield return userRequest.SendWebRequest();
+
+                        if (userRequest.isNetworkError || www.isHttpError)
                         {
-                            feedback.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+                            Debug.Log(userRequest.error);
                         }
+                        else
+                        {
+                            StringBuilder feedback = new StringBuilder();
+                            foreach (KeyValuePair<string, string> dict in userRequest.GetResponseHeaders())
+                            {
+                                feedback.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+                            }
 
-                        //Print Headers
-                        //Debug.Log(feedback.ToString());
+                            //Print Headers
+                            //Debug.Log(feedback.ToString());
 
-                        //Print Body
-                        //Debug.Log(userRequest.downloadHandler.text);
+                            //Print Body
+                            //Debug.Log(userRequest.downloadHandler.text);
 
-                        info = JsonUtility.FromJson<userInfo>(userRequest.downloadHandler.text);
-                        Controller.username = info.name;
-                        Controller.token = info.token;
-                        Controller.Highscore = info.maxscore;
-                        username.text = "HI " + info.name;
-                        highscore.text = "HIGHSCORE: " + info.maxscore;
+                            info = JsonUtility.FromJson<userInfo>(userRequest.downloadHandler.text);
+                            Controller.username = info.name;
+                            Controller.token = info.token;
+                            Controller.Highscore = info.maxscore;
+                            username.text = "HI " + info.name;
+                            highscore.text = "HIGHSCORE: " + info.maxscore;
 
-                        StartCoroutine(controller.UserDetails());
-                        //StartCoroutine(Controller.UserDetails());
-                        //Debug.Log(Controller.username);
-                        //Debug.Log(Controller.token);
-                        //Debug.Log(Controller.Highscore);
+                            StartCoroutine(controller.UserDetails());
+                            //StartCoroutine(Controller.UserDetails());
+                            //Debug.Log(Controller.username);
+                            //Debug.Log(Controller.token);
+                            //Debug.Log(Controller.Highscore);
 
-                        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+                        }
                     }
+
                 }
-
             }
-        }
 
-    }*/
+        }*/
 }
