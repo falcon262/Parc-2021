@@ -2108,7 +2108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -372.24, y: -112.5}
+  m_AnchoredPosition: {x: -312.9, y: -112.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475577693
@@ -8075,7 +8075,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: METHATON
+  m_text: SCRIPT VR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e730077dbf1fc2a4ca0338d41daaf9a3, type: 2}
   m_sharedMaterial: {fileID: -1912998562906541475, guid: e730077dbf1fc2a4ca0338d41daaf9a3,
@@ -8343,7 +8343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1919808007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8978,7 +8978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -236.9, y: -112.5}
+  m_AnchoredPosition: {x: -177.56006, y: -112.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000677318
